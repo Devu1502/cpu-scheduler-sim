@@ -1,5 +1,5 @@
 from models.process import Process
-from scheduler.fcfs import fcfs
+from scheduler.sjf import sjf
 from metrics.metrics import calculate_metrics
 
 processes = [
@@ -8,9 +8,11 @@ processes = [
     Process("P3", 2, 2)
 ]
 
-results = fcfs(processes)
+# THEN call algorithm
+results = sjf(processes)
 metrics = calculate_metrics(results)
 
+print("\nSJF Results:")
 for r in results:
     print(r.pid, r.start_time, r.finish_time, r.waiting_time, r.turnaround_time)
 
