@@ -134,13 +134,6 @@ For each simulation, the system displays:
 
 ---
 
-## Notes
-
-- All algorithms are evaluated against the same input dataset for consistent comparison
-- Both preemptive and non-preemptive scheduling strategies are supported
-
----
-
 ## Author
 
 Devananda Sreekanth
