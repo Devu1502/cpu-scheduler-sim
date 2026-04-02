@@ -1,5 +1,6 @@
 from models.process import Process
 from scheduler.fcfs import fcfs
+from metrics.metrics import calculate_metrics
 
 processes = [
     Process("P1", 0, 4),
@@ -8,6 +9,11 @@ processes = [
 ]
 
 results = fcfs(processes)
+metrics = calculate_metrics(results)
 
 for r in results:
     print(r.pid, r.start_time, r.finish_time, r.waiting_time, r.turnaround_time)
+
+print("\nMetrics:")
+for k, v in metrics.items():
+    print(f"{k}: {v:.2f}")
