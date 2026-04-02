@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import APIRouter
 from pydantic import BaseModel
 from typing import List
 
@@ -10,9 +10,8 @@ from scheduler.srtf import srtf
 from scheduler.hrrn import hrrn
 from metrics.metrics import calculate_metrics
 
-app = FastAPI()
+router = APIRouter()
 
-# Request schema
 class ProcessInput(BaseModel):
     pid: str
     arrival_time: int
@@ -23,7 +22,6 @@ class ScheduleRequest(BaseModel):
     algorithm: str
     processes: List[ProcessInput]
 
-# Algorithm map
 algorithms = {
     "FCFS": fcfs,
     "SJF": sjf,
@@ -32,7 +30,7 @@ algorithms = {
     "HRRN": hrrn
 }
 
-@app.post("/schedule")
+@router.post("/schedule")
 def schedule(req: ScheduleRequest):
     processes = [
         Process(p.pid, p.arrival_time, p.burst_time, p.priority)
