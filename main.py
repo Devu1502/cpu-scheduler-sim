@@ -2,7 +2,7 @@ from models.process import Process
 from scheduler.sjf import sjf
 from metrics.metrics import calculate_metrics
 from scheduler.rr import round_robin
-
+from scheduler.srtf import srtf
 
 processes = [
     Process("P1", 0, 5),
@@ -10,11 +10,10 @@ processes = [
     Process("P3", 2, 2)
 ]
 
-# THEN call algorithm
-results = round_robin(processes, quantum=2)
+results = srtf(processes)
 metrics = calculate_metrics(results)
 
-print("\nRound Robin Results:")
+print("\nSRTF Results:")
 for r in results:
     print(r.pid, r.start_time, r.finish_time, r.waiting_time, r.turnaround_time)
 
