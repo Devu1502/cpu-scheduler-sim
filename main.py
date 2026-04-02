@@ -1,10 +1,10 @@
-from models.process import Process
+from scheduler.fcfs import fcfs
 from scheduler.sjf import sjf
-from metrics.metrics import calculate_metrics
 from scheduler.rr import round_robin
 from scheduler.srtf import srtf
 from scheduler.hrrn import hrrn
-
+from metrics.metrics import calculate_metrics
+from models.process import Process
 
 processes = [
     Process("P1", 0, 5),
@@ -12,13 +12,21 @@ processes = [
     Process("P3", 2, 2)
 ]
 
-results = hrrn(processes)
-metrics = calculate_metrics(results)
+algorithms = {
+    "FCFS": fcfs,
+    "SJF": sjf,
+    "RR": lambda p: round_robin(p, quantum=2),
+    "SRTF": srtf,
+    "HRRN": hrrn
+}
 
-print("\nHRRN Results:")
-for r in results:
-    print(r.pid, r.start_time, r.finish_time, r.waiting_time, r.turnaround_time)
+print("\n=== Algorithm Comparison ===\n")
 
-print("\nMetrics:")
-for k, v in metrics.items():
-    print(f"{k}: {v:.2f}")
+for name, algo in algorithms.items():
+    results = algo(processes)
+    metrics = calculate_metrics(results)
+
+    print(f"{name}:")
+    for k, v in metrics.items():
+        print(f"  {k}: {v:.2f}")
+    print()
