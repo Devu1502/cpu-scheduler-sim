@@ -15,6 +15,26 @@ This project implements multiple CPU scheduling algorithms and compares their pe
 
 ---
 
+## Platform and Dependencies
+
+### Platform Tested On
+- macOS (Apple Silicon / Intel)
+- Node.js v18+
+- Python 3.9+
+
+### Dependencies
+
+#### Backend
+- fastapi
+- uvicorn
+
+#### Frontend
+- react
+- vite
+- npm
+
+---
+
 ## Features
 
 - Input custom processes (arrival time, burst time)
