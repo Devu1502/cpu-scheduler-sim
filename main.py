@@ -1,6 +1,13 @@
-from models.process import Process, SchedulingResult
+from models.process import Process
+from scheduler.fcfs import fcfs
 
-p = Process("P1", 0, 5)
-r = SchedulingResult("P1", 0, 5, 0, 5)
+processes = [
+    Process("P1", 0, 4),
+    Process("P2", 1, 3),
+    Process("P3", 2, 2)
+]
 
-print(r.waiting_time, r.turnaround_time, r.response_time)
+results = fcfs(processes)
+
+for r in results:
+    print(r.pid, r.start_time, r.finish_time, r.waiting_time, r.turnaround_time)
