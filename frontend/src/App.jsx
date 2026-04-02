@@ -39,7 +39,6 @@ function App() {
 
       const data = await response.json();
 
-      // ✅ STORE DATA
       setResults(data.results);
       setMetrics(data.metrics);
 
@@ -85,7 +84,6 @@ function App() {
       <br /><br />
       <button onClick={handleRun}>Run Simulation</button>
 
-      {/* ✅ METRICS DISPLAY */}
       {metrics && (
         <div>
           <h3>Metrics</h3>
@@ -96,7 +94,6 @@ function App() {
         </div>
       )}
 
-      {/* ✅ RESULTS TABLE */}
       {results.length > 0 && (
         <div>
           <h3>Results</h3>
